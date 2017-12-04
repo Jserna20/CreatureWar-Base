@@ -13,6 +13,7 @@ public class Human extends Creature
     private static final int MIN_HUMAN_HP = 5;
     private static final int MAX_HUMAN_STR = 20;
     private static final int MIN_HUMAN_STR = 5;
+    private static final String CLASS_H = "Human";
 
     /**
      * Constructor for objects of class Human
@@ -26,7 +27,8 @@ public class Human extends Creature
         // range + min ensures that the values don't start at one.
         super(
             Randomizer.nextInt(MAX_HUMAN_HP-MIN_HUMAN_HP)+MIN_HUMAN_HP,    
-            Randomizer.nextInt(MAX_HUMAN_STR-MIN_HUMAN_STR)+MIN_HUMAN_STR
+            Randomizer.nextInt(MAX_HUMAN_STR-MIN_HUMAN_STR)+MIN_HUMAN_STR,
+            CLASS_H
         );
           
     }

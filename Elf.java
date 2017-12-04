@@ -11,6 +11,7 @@ public class Elf extends Creature
     private static final int MIN_ELF_HP = 5;
     private static final int MAX_ELF_STR = 10;
     private static final int MIN_ELF_STR = 5;
+    private static final String CLASS_E = "Elf";
 
     /**
      * Constructor for objects of class Elf
@@ -24,7 +25,8 @@ public class Elf extends Creature
         // range + min ensures that the values don't start at one.
         super(
             Randomizer.nextInt(MAX_ELF_HP-MIN_ELF_HP)+MIN_ELF_HP,    
-            Randomizer.nextInt(MAX_ELF_STR-MIN_ELF_STR)+MIN_ELF_STR
+            Randomizer.nextInt(MAX_ELF_STR-MIN_ELF_STR)+MIN_ELF_STR,
+            CLASS_E
         );
           
     }

@@ -15,6 +15,7 @@ public abstract class Creature
     private int str;
     private int max_hp;
     private int hp;
+    private String creatureType;
     
     /**
      * default constructor - this should never actually run
@@ -23,6 +24,7 @@ public abstract class Creature
         str=10;
         hp=10;
         max_hp = hp;
+        creatureType = "";
     }
     
     /**
@@ -33,9 +35,11 @@ public abstract class Creature
      * @param str the strength of the creature, used to calculate damage
      * @param hp the health of the creature at the start of the simulation, and the current health levels during battle
      */
-    public Creature (int str, int hp) {
+    public Creature (int str, int hp, String creatureType) {
        //implement this
-       
+       this.str = str;
+       this.hp = hp;
+       this.creatureType = creatureType;
     }
     
     
@@ -45,7 +49,9 @@ public abstract class Creature
      */
     public int damage(){
         // implement this
-        return 0;
+        int damage = Randomizer.nextInt(str) + 1;
+        
+        return damage;
     }
     
     
@@ -55,6 +61,9 @@ public abstract class Creature
      */
     public boolean isAlive() {
         //implement this
+        if(hp > 0)
+        return true;
+        else
         return false; //change this
     }
     
@@ -64,7 +73,9 @@ public abstract class Creature
      */
     public boolean isDead() {
         //implement this
-        return false; //change this
+        if(hp > 0)
+        return false;
+        return true; //change this
     }
     
     
@@ -73,8 +84,18 @@ public abstract class Creature
      * the current total of hit points
      * @param damage value to remove from hit point count
      */
-    public void takeDamage(int damage) {
+    public void takeDamage() {
         // implement this
+        int attack = damage();
+        int currentHP = hp - attack;
+        System.out.println(creatureType + " took " + attack);
+        if((isAlive() == true) && (hp - attack > 0))
+        {
+            System.out.println(currentHP + " hp left.");
+            hp = currentHP;
+        }
+        else
+        System.out.println(creatureType + " has died");
     }
     
 }
