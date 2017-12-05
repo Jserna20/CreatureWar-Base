@@ -50,8 +50,35 @@ public abstract class Creature
     public int damage(){
         // implement this
         int damage = Randomizer.nextInt(str) + 1;
+        if(creatureType.equals("Elf"))
+        {
+            if(Randomizer.nextInt(10) == 9)
+                return damage * 2;
+            
+            return damage;
+        }
+        
+        if(creatureType.equals("Cyberdemon"))
+        {
+            return damage;
+        }
+        
+        if(creatureType.equals("Balrog"))
+        {
+            damage = damage + (Randomizer.nextInt(str) + 1);           
+            return damage;
+        }
+        
+        if(creatureType.equals("Demon"))
+        {
+          if(Randomizer.nextInt(100) == 99)
+                return damage + 50;
+                
+          return damage;
+        }
         
         return damage;
+            
     }
     
     
@@ -95,7 +122,10 @@ public abstract class Creature
             hp = currentHP;
         }
         else
-        System.out.println(creatureType + " has died");
+        {
+            System.out.println(creatureType + " has died");
+            hp = 0;
+        }
     }
     
 }
