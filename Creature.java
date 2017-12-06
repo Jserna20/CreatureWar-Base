@@ -50,33 +50,6 @@ public abstract class Creature
     public int damage(){
         // implement this
         int damage = Randomizer.nextInt(str) + 1;
-        if(creatureType.equals("Elf"))
-        {
-            if(Randomizer.nextInt(10) == 9)
-                return damage * 2;
-            
-            return damage;
-        }
-        
-        if(creatureType.equals("Cyberdemon"))
-        {
-            return damage;
-        }
-        
-        if(creatureType.equals("Balrog"))
-        {
-            damage = damage + (Randomizer.nextInt(str) + 1);           
-            return damage;
-        }
-        
-        if(creatureType.equals("Demon"))
-        {
-          if(Randomizer.nextInt(100) == 99)
-                return damage + 50;
-                
-          return damage;
-        }
-        
         return damage;
             
     }
@@ -111,11 +84,12 @@ public abstract class Creature
      * the current total of hit points
      * @param damage value to remove from hit point count
      */
-    public void takeDamage() {
+    public void takeDamage(int attack) 
+    {
         // implement this
-        int attack = damage();
+        System.out.println(creatureType + " has " + hp + " hp");
         int currentHP = hp - attack;
-        System.out.println(creatureType + " took " + attack);
+        System.out.println(creatureType + " took " + attack + " damage.");
         if((isAlive() == true) && (hp - attack > 0))
         {
             System.out.println(currentHP + " hp left.");
@@ -123,7 +97,7 @@ public abstract class Creature
         }
         else
         {
-            System.out.println(creatureType + " has died");
+            System.out.println(creatureType + " has died!");
             hp = 0;
         }
     }

@@ -28,7 +28,23 @@ public class Elf extends Creature
             Randomizer.nextInt(MAX_ELF_STR-MIN_ELF_STR)+MIN_ELF_STR,
             CLASS_E
         );
-          
+
+    }
+    
+    /**
+     * Overriding the damage method
+     * @return dmg
+     */
+    public int damage()
+    {
+        int dmg;
+        dmg = super.damage();
+        
+        if(Randomizer.nextInt(10) == 9){
+            System.err.println("Override");
+            dmg = dmg * 2;
+        }
+        return dmg;
     }
 
 }

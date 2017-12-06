@@ -30,5 +30,21 @@ public class Balrog extends Creature
         );
           
     }
+    
+    /**
+     * Overriding the damage method
+     * @return dmg
+     */
+    public int damage()
+    {
+        int dmg;
+        dmg = super.damage() + super.damage();
+        
+        if(Randomizer.nextInt(100) <= 4){
+            System.err.println("Override");
+            dmg += 50;
+        }
+        return dmg;
+    }
 
 }

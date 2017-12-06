@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class War here.
  *
@@ -9,8 +9,10 @@ public class War
 {
     // instance variables - replace the example below with your own
     private int soldiers;
-    private Creature[] goodGuys;
-    private Creature[] badGuys;
+    private ArrayList<Creature> goodArmy = new ArrayList<Creature>();
+    private ArrayList<Creature> evilArmy = new ArrayList<Creature>();
+    private int e = 0;
+    private int g = 0;
     
 
     /**
@@ -18,52 +20,71 @@ public class War
      */
     public War()
     {
-        // initialise instance variables
-        soldiers = Randomizer.nextInt(25) + 1;
-        goodGuys = new Creature[soldiers];
-        fillGoodArmy();
-        badGuys = new Creature[soldiers];
+      Army1(100);
+      Army2(100);
     }
     
     public War(int army)
     {
-        soldiers = army;
-        goodGuys = new Creature[soldiers];
-        fillGoodArmy();
-        badGuys = new Creature[soldiers];
+       soldiers = army;
+       Army1(army);
+       Army2(army);
+    }
+    
+    /**
+     * 
+     * Each time Army1 loops, a random number is generated between 
+     */
+    private void Army1(int Good) 
+    {
+        for (int i = 0; i < Good; i++) 
+        {
+            if (Randomizer.nextInt(2) == 1) 
+            {
+                goodArmy.add(new Human());
+            } 
+            else 
+            {
+                goodArmy.add(new Elf());
+            }
+        }   
     }
 
+
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * In this Army2 method,
      */
-    public void fillGoodArmy()
+    private void Army2(int Evil)
     {
-        // put your code here
-        for(int i = 0; i < soldiers; i++)
+        for (int i = 0; i < Evil; i++) 
         {
-            if(Randomizer.nextInt(2) == 1)
-                System.out.println("Make Elf");
-            else
-                System.out.println("Make Human");
-            
-            //goodGuys[i] = Whatever that it is
+            if (Randomizer.nextInt(2) == 1)
+            {
+                evilArmy.add(new CyberDemon());
+            }
+            else 
+            {
+                evilArmy.add(new Balrog());
+            }
         }
     }
     
-    public void fillBadArmy()
+    private void StartWar()
     {
-        // put your code here
-        for(int i = 0; i < soldiers; i++)
+        while((g != goodArmy.size()) && (e != evilArmy.size()))
         {
-            if(Randomizer.nextInt(2) == 1)
-                System.out.println("Make CyberDemon");
-            else
-                System.out.println("Make Balrog");
-            
-            //badGuys[i] = Whatever that it is
-        }
+            BattleTurn();
+        }  
+    }
+    
+    private void BattleTurn()
+    {
+        int attackedG = goodArmy.get(g).takedamage(evilArmy.get(e).damage());
+        if(goodArmy.get(g).isDead())
+            g++;
+        
+        int attackedE = evilArmy.get(e).takedamage(goodArmy.get(g).damage());
+        if(evilArmy.get(e).isDead())
+            e++;
     }
 }
