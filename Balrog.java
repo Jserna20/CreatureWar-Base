@@ -37,13 +37,21 @@ public class Balrog extends Creature
      */
     public int damage()
     {
-        int dmg;
-        dmg = super.damage() + super.damage();
-        
-        if(Randomizer.nextInt(100) <= 4){
-            System.err.println("Override");
-            dmg += 50;
+        int dmg = 0;
+        for(int i = 0; i < 2; i++)
+        {
+            if(i == 0)
+                dmg = super.damage();
+            else
+                dmg += super.damage();
+            
+            if(Randomizer.nextInt(100) <= 4)
+            {
+                System.out.println("Dark Magic Attack!!");
+                dmg += 50;
+            }
         }
+            
         return dmg;
     }
 

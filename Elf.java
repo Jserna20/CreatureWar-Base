@@ -41,7 +41,7 @@ public class Elf extends Creature
         dmg = super.damage();
         
         if(Randomizer.nextInt(10) == 9){
-            System.err.println("Override");
+            System.out.println("Used Magic Attack!!");
             dmg = dmg * 2;
         }
         return dmg;

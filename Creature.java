@@ -47,12 +47,18 @@ public abstract class Creature
      * Allows a creature to determine how much damage it is causing in this round of battle
      * @return a value between 1 and str to be used to cause damage to another creature
      */
-    public int damage(){
+    public int damage()
+    {
         // implement this
         int damage = Randomizer.nextInt(str) + 1;
-        return damage;
-            
+        return damage;            
     }
+    
+    public String creatureName()
+    {
+        return creatureType;
+    }
+        
     
     
     /**

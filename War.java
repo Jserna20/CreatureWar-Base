@@ -69,21 +69,35 @@ public class War
         }
     }
     
-    private void StartWar()
+    public void GoToWar()
     {
         while((g != goodArmy.size()) && (e != evilArmy.size()))
         {
             BattleTurn();
-        }  
+        }
+        
+        if(g < e)
+            System.out.println("The good Army has won with " + (goodArmy.size() - g) + " soldier(s) left.");
+        else if(e < g)
+            System.out.println("The evil Army has won with " + (evilArmy.size() - e) + " soldier(s) left.");
+        else
+            System.out.println("The armies have wiped each other out no one remains");
+        
     }
     
     private void BattleTurn()
     {
-        int attackedG = goodArmy.get(g).takedamage(evilArmy.get(e).damage());
+        System.out.println("" + evilArmy.get(e).creatureName() + e + " attacked. "); 
+        goodArmy.get(g).takeDamage(evilArmy.get(e).damage());
         if(goodArmy.get(g).isDead())
+        {
             g++;
-        
-        int attackedE = evilArmy.get(e).takedamage(goodArmy.get(g).damage());
+            if(g == goodArmy.size())
+                return;
+        }
+            
+        System.out.println("" + goodArmy.get(g).creatureName() + g + " attacked. ");
+        evilArmy.get(e).takeDamage(goodArmy.get(g).damage());
         if(evilArmy.get(e).isDead())
             e++;
     }

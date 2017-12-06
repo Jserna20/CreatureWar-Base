@@ -41,7 +41,7 @@ public class CyberDemon extends Creature
         dmg = super.damage();
         
         if(Randomizer.nextInt(100) <= 4){
-            System.err.println("Override");
+            System.out.println("Dark Magic Attack!!");
             dmg += 50;
         }
         return dmg;
